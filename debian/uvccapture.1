@@ -1,0 +1,71 @@
+.\" -*- nroff -*-
+.TH UVCCAPTURE 1 "28th March, 2008"
+.SH NAME
+uvccapture \- USB UVC Video Class snapshot software
+.SH SYNOPSIS
+.B uvccapture
+.RI [ options ]
+.SH DESCRIPTION
+This manual page documents briefly the
+.B uvccapture
+command.
+.PP
+The purpose of \fBuvccapture\fP is to capture an image from a USB webcam at a
+specified interval, and save it to a JPEG file, no other formats are supported,
+imagemagick can handle anything else you might need.
+.SH OPTIONS
+A summary of options is included below.
+.TP
+.B \-h
+Show summary of options.
+.TP
+.B \-v
+Verbose output.
+.TP
+.B \-o<filename>
+Output filename (default is snap.jpg)
+.TP
+.B \-d<device>
+V4L2 Device (default is /dev/video0)
+.TP
+.B \-x<width>
+Image Width (must be supported by device) (>960 activates YUYV capture)
+.TP
+.B \-y<height>
+Image Height (must be supported by device) (>720 activates YUYV capture)
+.TP
+.B \-c<command>
+Command to run after each image capture (executed as <command> <output_filename>)
+.TP
+.B \-t<integer>
+Take continuous shots with <integer> seconds between them (0 for single shot)
+.TP
+.B \-q<percentage>
+JPEG Quality Compression Level (activates YUYV capture)
+.TP
+.B \-r
+Use read instead of mmap for image capture
+.TP
+.B \-w
+Wait for capture command to finish before starting next capture
+.TP
+.B \-m
+Toggles capture mode to YUYV capture
+.TP
+.B \-B<integer>
+Brightness
+.TP
+.B \-C<integer>
+Contrast
+.TP
+.B \-S<integer>
+Saturation
+.SH SEE ALSO
+.BR http://linux-uvc.berlios.de/
+.SH AUTHOR
+uvccapture was written by Gabriel A. Devenyi <ace@staticwave.ca>.
+This software is based of the package luvcview by Laurent Pinchart and Michel
+Xhaard.
+.PP
+This manual page was written by Krzysztof Burghardt <krzysztof@burghardt.pl>,
+for the Debian project (but may be used by others).

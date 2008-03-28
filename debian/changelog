@@ -1,0 +1,5 @@
+uvccapture (0.4-1) unstable; urgency=low
+
+  * Initial release (Closes: #473153)
+
+ -- Krzysztof Burghardt <krzysztof@burghardt.pl>  Fri, 28 Mar 2008 19:13:23 +0100
