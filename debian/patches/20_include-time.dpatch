@@ -1,0 +1,17 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 20_include-time.dpatch by Sebastian Holtermann <sebholt@web.de>
+##
+## DP: Fixes problems with implicit declaration of function ‘difftime’
+
+@DPATCH@
+diff -urNad uvccapture-0.4~/uvccapture.c uvccapture-0.4/uvccapture.c
+--- uvccapture-0.4~/uvccapture.c	2008-07-31 23:10:34.418129918 +0200
++++ uvccapture-0.4/uvccapture.c	2008-07-31 23:11:37.190130486 +0200
+@@ -26,6 +26,7 @@
+ #include <stdlib.h>
+ #include <string.h>
+ #include <signal.h>
++#include <time.h>
+ #include <sys/types.h>
+ #include <sys/wait.h>
+ #include <unistd.h>
