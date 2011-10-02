@@ -1,3 +1,16 @@
+uvccapture (0.5-1.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * uvccapture.c, v4l2uvc.c: Include linux/videodev2.h.  Closes: #621963.
+
+ -- Bart Martens <bartm@debian.org>  Sun, 02 Oct 2011 22:04:40 +0200
+
+uvccapture (0.5-1) unstable; urgency=low
+
+  * New upstream release, all Debian patches merged
+
+ -- Krzysztof Burghardt <krzysztof@burghardt.pl>  Sun, 03 Aug 2008 22:02:38 +0200
+
 uvccapture (0.4-2) unstable; urgency=low
 
   * Add patch submited by Arno van Amersfoort to prevent double call to
@@ -9,7 +22,7 @@ uvccapture (0.4-2) unstable; urgency=low
     more customary to point to /usr/share/common-licenses/GPL
     and not (only) to GPL-2 (debian/copyright fixed).
 
- -- Krzysztof Burghardt <krzysztof@burghardt.pl>  Thu, 31 Jul 2008 23:17:00 +0200
+ -- Krzysztof Burghardt <krzysztof@burghardt.pl>  Sun, 03 Aug 2008 21:52:54 +0200
 
 uvccapture (0.4-1) unstable; urgency=low
 
