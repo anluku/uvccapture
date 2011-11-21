@@ -1,3 +1,10 @@
+uvccapture (0.5-1.2) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Build-Depends on libjpeg-dev, not libjpeg62-dev. Closes: #644969.
+
+ -- Didier Raboud <odyx@debian.org>  Mon, 21 Nov 2011 10:02:58 +0100
+
 uvccapture (0.5-1.1) unstable; urgency=low
 
   * Non-maintainer upload.
