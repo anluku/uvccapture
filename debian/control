@@ -5,6 +5,8 @@ Maintainer: Andrew Starr-Bochicchio <a.starr.b@gmail.com>
 Build-Depends: debhelper (>= 9), libjpeg-dev
 Standards-Version: 3.9.3.1
 Homepage: http://linux-uvc.berlios.de/
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/uvccapture.git;a=summary
+Vcs-Git: git://git.debian.org/git/collab-maint/uvccapture.git
 
 Package: uvccapture
 Architecture: any
