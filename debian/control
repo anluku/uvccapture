@@ -1,7 +1,7 @@
 Source: uvccapture
 Section: graphics
 Priority: optional
-Maintainer: Krzysztof Burghardt <krzysztof@burghardt.pl>
+Maintainer: Andrew Starr-Bochicchio <a.starr.b@gmail.com>
 Build-Depends: debhelper (>= 5), libjpeg-dev
 Standards-Version: 3.8.0
 Homepage: http://linux-uvc.berlios.de/
