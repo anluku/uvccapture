@@ -3,6 +3,9 @@
 %:
 	dh $@
 
+override_dh_auto_install-arch:
+	$(MAKE) PREFIX=$(CURDIR)/debian/uvccapture/usr/bin install
+
 override_auto_dh_install:
 	dh_installchangelogs ChangeLog
 	dh_installman debian/uvccapture.1
