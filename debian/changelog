@@ -1,4 +1,4 @@
-uvccapture (0.5-2) UNRELEASED; urgency=low
+uvccapture (0.5-2) unstable; urgency=low
 
   * Adopt package, adding myself as maintainer (Closes: #678860).
   * debian/patches/fix_videodev_include_FTBFS.patch: Move changes
@@ -10,7 +10,7 @@ uvccapture (0.5-2) UNRELEASED; urgency=low
   * debian/copyright: Use machine readable copyright-format 1.0.
   * Create a collab-maint git repo on Alioth and add Vcs fields.
 
- -- Andrew Starr-Bochicchio <a.starr.b@gmail.com>  Fri, 29 Jun 2012 14:02:39 -0400
+ -- Andrew Starr-Bochicchio <a.starr.b@gmail.com>  Fri, 29 Jun 2012 14:23:50 -0400
 
 uvccapture (0.5-1.2) unstable; urgency=low
 
