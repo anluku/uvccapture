@@ -1,0 +1,88 @@
+Description: Remove build warnings
+ This patch fixes several warnings during the build: redefined symbols (which
+ weren't referenced) and unused variables.
+Last-Update: 2013-10-19
+Author: Bas Wijnen
+Debian-Bug: http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=726804
+
+--- uvccapture-0.5.orig/Makefile
++++ uvccapture-0.5/Makefile
+@@ -18,6 +18,8 @@ LDFLAGS = $(DPKG_LDFLAGS)
+ 
+ OBJECTS= uvccapture.o v4l2uvc.o
+ 
++%.o: %.c v4l2uvc.h
++	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+ 
+ all:    uvccapture
+ 
+--- uvccapture-0.5.orig/v4l2uvc.c
++++ uvccapture-0.5/v4l2uvc.c
+@@ -397,15 +397,13 @@ v4l2SetControl (struct vdIn *vd, int con
+ {
+   struct v4l2_control control_s;
+   struct v4l2_queryctrl queryctrl;
+-  int min, max, step, val_def;
++  int min, max;
+   int err;
+ 
+   if (isv4l2Control (vd, control, &queryctrl) < 0)
+     return -1;
+   min = queryctrl.minimum;
+   max = queryctrl.maximum;
+-  step = queryctrl.step;
+-  val_def = queryctrl.default_value;
+   if ((value >= min) && (value <= max)) {
+     control_s.id = control;
+     control_s.value = value;
+@@ -422,15 +420,13 @@ v4l2UpControl (struct vdIn *vd, int cont
+ {
+   struct v4l2_control control_s;
+   struct v4l2_queryctrl queryctrl;
+-  int min, max, current, step, val_def;
++  int max, current, step;
+   int err;
+ 
+   if (isv4l2Control (vd, control, &queryctrl) < 0)
+     return -1;
+-  min = queryctrl.minimum;
+   max = queryctrl.maximum;
+   step = queryctrl.step;
+-  val_def = queryctrl.default_value;
+   current = v4l2GetControl (vd, control);
+   current += step;
+   if (current <= max) {
+@@ -449,15 +445,13 @@ v4l2DownControl (struct vdIn *vd, int co
+ {
+   struct v4l2_control control_s;
+   struct v4l2_queryctrl queryctrl;
+-  int min, max, current, step, val_def;
++  int min, current, step;
+   int err;
+ 
+   if (isv4l2Control (vd, control, &queryctrl) < 0)
+     return -1;
+   min = queryctrl.minimum;
+-  max = queryctrl.maximum;
+   step = queryctrl.step;
+-  val_def = queryctrl.default_value;
+   current = v4l2GetControl (vd, control);
+   current -= step;
+   if (current >= min) {
+--- uvccapture-0.5.orig/v4l2uvc.h
++++ uvccapture-0.5/v4l2uvc.h
+@@ -25,14 +25,6 @@
+ #define NB_BUFFER 16
+ #define DHT_SIZE 420
+ 
+-#define V4L2_CID_BACKLIGHT_COMPENSATION	(V4L2_CID_PRIVATE_BASE+0)
+-#define V4L2_CID_POWER_LINE_FREQUENCY	(V4L2_CID_PRIVATE_BASE+1)
+-#define V4L2_CID_SHARPNESS		(V4L2_CID_PRIVATE_BASE+2)
+-#define V4L2_CID_HUE_AUTO		(V4L2_CID_PRIVATE_BASE+3)
+-#define V4L2_CID_FOCUS_AUTO		(V4L2_CID_PRIVATE_BASE+4)
+-#define V4L2_CID_FOCUS_ABSOLUTE		(V4L2_CID_PRIVATE_BASE+5)
+-#define V4L2_CID_FOCUS_RELATIVE		(V4L2_CID_PRIVATE_BASE+6)
+-
+ #define V4L2_CID_PANTILT_RELATIVE	(V4L2_CID_PRIVATE_BASE+7)
+ #define V4L2_CID_PANTILT_RESET		(V4L2_CID_PRIVATE_BASE+8)
+ 
