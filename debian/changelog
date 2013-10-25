@@ -1,3 +1,10 @@
+uvccapture (0.5-3) UNRELEASED; urgency=low
+
+  * Use returned number of buffers instead of requested.
+    Thanks to Bas Wijnen for the patch (Closes: #726802).
+
+ -- Andrew Starr-Bochicchio <asb@debian.org>  Fri, 25 Oct 2013 15:19:37 -0400
+
 uvccapture (0.5-2) unstable; urgency=low
 
   * Adopt package, adding myself as maintainer (Closes: #678860).

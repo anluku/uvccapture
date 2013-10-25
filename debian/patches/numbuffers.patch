@@ -1,0 +1,36 @@
+Description: Use returned number of buffers instead of requested.
+ VIDIOC_REQBUFS stores the number of actually allocated buffers.
+ This patch uses this value instead of assuming it is equal to the requested number.
+Author: Bas Wijnen <wijnen@debian.org>
+Debian-Bug: http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=726802
+Last-Update: 2013-10-19
+
+--- uvccapture-0.5.orig/v4l2uvc.c
++++ uvccapture-0.5/v4l2uvc.c
+@@ -202,7 +202,7 @@ init_v4l2 (struct vdIn *vd)
+     goto fatal;
+   }
+   /* map the buffers */
+-  for (i = 0; i < NB_BUFFER; i++) {
++  for (i = 0; i < vd->rb.count; i++) {
+     memset (&vd->buf, 0, sizeof (struct v4l2_buffer));
+     vd->buf.index = i;
+     vd->buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+@@ -226,7 +226,7 @@ init_v4l2 (struct vdIn *vd)
+       fprintf (stderr, "Buffer mapped at address %p.\n", vd->mem[i]);
+   }
+   /* Queue the buffers. */
+-  for (i = 0; i < NB_BUFFER; ++i) {
++  for (i = 0; i < vd->rb.count; ++i) {
+     memset (&vd->buf, 0, sizeof (struct v4l2_buffer));
+     vd->buf.index = i;
+     vd->buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+@@ -335,7 +335,7 @@ close_v4l2 (struct vdIn *vd)
+ 
+   /* If the memory maps are not released the device will remain opened even
+      after a call to close(); */
+-  for (i = 0; i < NB_BUFFER; i++) {
++  for (i = 0; i < vd->rb.count; i++) {
+     munmap (vd->mem[i], vd->buf.length);
+   }
+ 
