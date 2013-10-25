@@ -1,4 +1,4 @@
-uvccapture (0.5-3) UNRELEASED; urgency=low
+uvccapture (0.5-3) unstable; urgency=low
 
   * Use returned number of buffers instead of requested.
     Thanks to Bas Wijnen for the patch (Closes: #726802).
@@ -11,7 +11,7 @@ uvccapture (0.5-3) UNRELEASED; urgency=low
     (which weren't referenced) and unused variables.
     Again, thanks to Bas Wijnen!
 
- -- Andrew Starr-Bochicchio <asb@debian.org>  Fri, 25 Oct 2013 15:19:37 -0400
+ -- Andrew Starr-Bochicchio <asb@debian.org>  Fri, 25 Oct 2013 15:42:10 -0400
 
 uvccapture (0.5-2) unstable; urgency=low
 
