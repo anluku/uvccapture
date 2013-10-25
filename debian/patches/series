@@ -1,2 +1,3 @@
 fix_videodev_include_FTBFS.patch
 numbuffers.patch
+hardening.patch

@@ -5,6 +5,8 @@ uvccapture (0.5-3) UNRELEASED; urgency=low
   * debian/control:
    - Bump Standards-Version to 3.9.4
    - Use my @debian.org address in the maintainer field.
+  * Patch upstream Makefile inorder to use hardening flags.
+    Thanks to Bas Wijnen for the patch (Closes: #726804).
 
  -- Andrew Starr-Bochicchio <asb@debian.org>  Fri, 25 Oct 2013 15:19:37 -0400
 

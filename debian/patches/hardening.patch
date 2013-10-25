@@ -1,0 +1,31 @@
+Description: Add hardening build flags
+ This patch adds hardening flags to the Makefile.
+ It does this using Debian's tools, so in its current form it cannot be used upstream.
+Last-Update: 2013-10-19
+Author: Bas Wijnen
+
+--- uvccapture-0.5.orig/Makefile
++++ uvccapture-0.5/Makefile
+@@ -7,8 +7,14 @@ PREFIX=/usr/local/bin
+ WARNINGS = -Wall
+ 
+ 
+-CFLAGS = -std=gnu99 -O2 -DLINUX -DVERSION=\"$(VERSION)\" $(WARNINGS)
+-CPPFLAGS = $(CFLAGS)
++DPKG_CPPFLAGS:=$(shell dpkg-buildflags --get CPPFLAGS)
++DPKG_CFLAGS:=$(shell dpkg-buildflags --get CFLAGS)
++DPKG_LDFLAGS:=$(shell dpkg-buildflags --get LDFLAGS)
++COMMON_FLAGS = -std=gnu99 -O2 $(WARNINGS)
++
++CFLAGS = $(DPKG_CFLAGS) $(COMMON_FLAGS)
++CPPFLAGS = $(DPKG_CPPFLAGS) $(COMMON_FLAGS) -DLINUX -DVERSION=\"$(VERSION)\"
++LDFLAGS = $(DPKG_LDFLAGS)
+ 
+ OBJECTS= uvccapture.o v4l2uvc.o
+ 
+@@ -24,4 +30,4 @@ install:
+ 
+ # Applications:
+ uvccapture: $(OBJECTS)
+-	$(CC)   $(OBJECTS) $(XPM_LIB) $(MATH_LIB) -ljpeg -o $(APP_BINARY)
++	$(CC) $(LDFLAGS) $(OBJECTS) $(XPM_LIB) $(MATH_LIB) -ljpeg -o $(APP_BINARY)
